@@ -1,0 +1,57 @@
+<body>
+  {{> mainContainer }}
+</body>
+
+<template name="mainContainer">
+  <div class="app">
+    <header>
+      <div class="app-bar">
+        <div class="app-header">
+          <h1>📝️ To Do List {{incompleteCount}}</h1>
+        </div>
+      </div>
+    </header>
+
+    <div class="main">
+      {{#if isUserLogged}}
+        <div class="user" style="cursor: pointer; padding: 10px 20px; display: flex; justify-content: flex-end; font-weight: bold; background: #fafafa; border-bottom: 1px solid #eee;">
+          <span>User: {{getUser.username}} 🚪 Logout</span>
+        </div>
+
+        {{> form }}
+
+        <div class="filter">
+          <button id="hide-completed-button">
+            {{#if hideCompleted}}
+              Show All Tasks
+            {{else}}
+              Hide Completed Tasks
+            {{/if}}
+          </button>
+        </div>
+
+        <ul class="tasks">
+          {{#each tasks}}
+            {{> task}}
+          {{/each}}
+        </ul>
+      {{else}}
+        {{> login }}
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="form">
+  <form class="task-form">
+    <input type="text" name="text" placeholder="Type to add new tasks" required />
+    
+    <select name="category">
+      <option value="Personal">Personal</option>
+      <option value="Work">Work</option>
+      <option value="Urgent">Urgent</option>
+    </select>
+    
+    <button type="submit">Add Task</button>
+  </form>
+</template>

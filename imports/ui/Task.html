@@ -1,0 +1,19 @@
+<template name="task">
+  <li class="task-item" draggable="true" data-id="{{_id}}" 
+      style="border-left: 6px solid {{categoryColor category}}; opacity: {{#if isChecked}}0.5{{else}}1.0{{/if}}; margin-bottom: 8px; list-style: none;">
+    
+    <div class="task-content">
+      <input type="checkbox" checked="{{isChecked}}" class="toggle-checked" style="cursor: pointer;" />
+      
+      <span style="{{#if isChecked}}text-decoration: line-through; color: #888;{{/if}}">
+        {{text}}
+      </span>
+      
+      <span class="badge">
+        {{category}}
+      </span>
+    </div>
+
+    <button class="delete">&times;</button>
+  </li>
+</template>
